@@ -1,4 +1,3 @@
-setwd("/Users/btamasi/Documents/Learning/Getting and Cleaning Data/Project")
 XtrainFile <- "./UCI HAR Dataset/train/X_train.txt"
 XtestFile <- "./UCI HAR Dataset/test/X_test.txt"
 ytrainFile <- "./UCI HAR Dataset/train/y_train.txt"
@@ -45,3 +44,6 @@ require(dplyr)
 tidy <- X %>%
   group_by(activity, subject) %>%
   summarise_each(funs(mean))
+
+## Export tidy data
+write.table(tidy, file = "tidy_data.txt", quote = FALSE, row.names = FALSE)

@@ -11,3 +11,7 @@
 
 -   `run_analysis.R`: Performs the analysis.
 -   `CodeBook.md`: Describes the variables, the data, and the transformations.
+
+## Output
+
+-   `tidy_data.txt` (tab-delimited text file)
