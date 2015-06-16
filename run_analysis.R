@@ -1,31 +1,20 @@
-XtrainFile <- "./UCI HAR Dataset/train/X_train.txt"
-XtestFile <- "./UCI HAR Dataset/test/X_test.txt"
-ytrainFile <- "./UCI HAR Dataset/train/y_train.txt"
-ytestFile <- "./UCI HAR Dataset/test/y_test.txt"
-subTrainFile <- "./UCI HAR Dataset/train/subject_train.txt"
-subTestFile <- "./UCI HAR Dataset/test/subject_test.txt"
-
-## Loading data
-X.train <- read.table(XtrainFile)
-X.test <- read.table(XtestFile)
-y.train <- read.table(ytrainFile)
-y.test <- read.table(ytestFile)
-s.train <- read.table(subTrainFile)
-s.test <- read.table(subTestFile)
-
-## Merging training and test data
+## Load and merge train and test sets
+X.train <- read.table("./UCI HAR Dataset/train/X_train.txt")
+X.test <- read.table("./UCI HAR Dataset/test/X_test.txt")
 X <- rbind(X.train, X.test)
 
 ## Load feature names
-fnameFile <- "./UCI HAR Dataset/features.txt"
-fname <- read.table(fnameFile, colClasses = "character")[, 2]
+feat.name <- read.table("./UCI HAR Dataset/features.txt",
+                    colClasses = "character")[, 2]
 
 ## Find mean and std features
-feat.keep <- grep("mean\\(\\)|std\\(\\)", fname) 
+feat.keep <- grep("mean\\(\\)|std\\(\\)", feat.name) 
 X <- X[, feat.keep]
-colnames(X) <- fname[feat.keep]
+colnames(X) <- feat.name[feat.keep]
 
-## Add activity data
+## Load, merge and add activity data
+y.train <- read.table("./UCI HAR Dataset/train/y_train.txt")
+y.test <- read.table("./UCI HAR Dataset/test/y_test.txt")
 X <- cbind(rbind(y.train, y.test), X)
 colnames(X)[1] <- "activity"
 
@@ -34,7 +23,9 @@ lab <- read.table("./UCI HAR Dataset/activity_labels.txt",
                   colClasses = "character")[, 2]
 X$activity <- factor(X$activity, labels = lab)
 
-## Add subjects
+## Load, merge and add subjects
+s.train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
+s.test <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 X <- cbind(rbind(s.train, s.test), X)
 colnames(X)[1] <- "subject"
 X$subject <- factor(X$subject)
