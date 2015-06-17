@@ -18,7 +18,7 @@ The `run_analysis.R` file implements the following steps:
 7.  Calculates averages on the data grouped by `activity` and `subject`.
 8.  Exports tidy data set as `tidy_data.txt`.
 
-## Output data
+## Output Data
 
 The `tidy_data.txt` output file contains group averages for the mean and standard deviation of the following measurement
 variables grouped by `activity` and `subject`:
