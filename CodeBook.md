@@ -20,7 +20,7 @@ The `run_analysis.R` file implements the following steps:
 
 ## Output Data
 
-The `tidy_data.txt` output file contains group averages for the mean and standard deviation of the following measurement
+The `tidy_data.txt` output file contains group averages for the *mean* and *standard deviation* of the following measurement
 variables grouped by `activity` and `subject`:
 
     tBodyAcc-XYZ
